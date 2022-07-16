@@ -163,7 +163,42 @@
         }
       }
     },
-    "/moods/{id}": {
+    "/moods/search": {
+      "get": {
+        "summary": "search moods",
+        "description": "returns a list of all moods containing query",
+        "operationId": "searchMoods",
+        "tags": ["Moods"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "description": "text",
+            "schema": {
+              "type": "string",
+              "example": "sample"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/moods/get/{id}": {
       "get": {
         "summary": "get mood BY ID",
         "description": "returns object with corresponding ID from DB",
@@ -199,7 +234,9 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/moods/update/{id}": {
       "put": {
         "summary": "update mood BY ID",
         "description": "updates mood with corresponding ID in DB from body",
@@ -252,7 +289,9 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/moods/delete/{id}": {
       "delete": {
         "summary": "delete mood BY ID",
         "description": "deletes mood with corresponding ID from DB",
