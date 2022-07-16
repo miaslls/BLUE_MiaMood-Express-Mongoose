@@ -51,27 +51,6 @@
       }
     },
     "/users": {
-      "get": {
-        "summary": "get ALL users",
-        "description": "returns a list of all users in DB",
-        "operationId": "getAllUsers",
-        "tags": ["Users"],
-        "security": [{ "bearerAuth": [] }],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
       "post": {
         "summary": "create NEW user",
         "description": "creates new user in DB from body",
@@ -103,14 +82,12 @@
             "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/moods": {
+      },
       "get": {
-        "summary": "get ALL moods",
-        "description": "returns a list of all moods in DB",
-        "operationId": "getAllMoods",
-        "tags": ["Moods"],
+        "summary": "get ALL users",
+        "description": "returns a list of all users in DB",
+        "operationId": "getAllUsers",
+        "tags": ["Users"],
         "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": {
@@ -119,11 +96,16 @@
           "401": {
             "description": "Unauthorized"
           },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/moods": {
       "post": {
         "summary": "create NEW mood",
         "description": "creates new mood in DB from body",
@@ -158,27 +140,13 @@
             "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/moods/search": {
+      },
       "get": {
-        "summary": "search moods",
-        "description": "returns a list of all moods containing query",
-        "operationId": "searchMoods",
+        "summary": "get ALL moods",
+        "description": "returns a list of all moods in DB",
+        "operationId": "getAllMoods",
         "tags": ["Moods"],
         "security": [{ "bearerAuth": [] }],
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "required": true,
-            "description": "text",
-            "schema": {
-              "type": "string",
-              "example": "sample"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -251,6 +219,38 @@
         "operationId": "getTodayMoods",
         "tags": ["Moods"],
         "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/moods/search": {
+      "get": {
+        "summary": "search moods",
+        "description": "returns a list of all moods containing query",
+        "operationId": "searchMoods",
+        "tags": ["Moods"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "description": "text",
+            "schema": {
+              "type": "string",
+              "example": "sample"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

@@ -1,14 +1,29 @@
 'use strict';
 
 import {
+  createMoodService,
   getAllMoodsService,
   getMoodsbyDateService,
-  getMoodByIdService,
   searchMoodsService,
-  createMoodService,
+  getMoodByIdService,
   updateMoodService,
   deleteMoodService,
 } from './moods.service.js';
+
+// 📌 CREATE
+
+export const createMoodController = async (req, res) => {
+  try {
+    const { type, icon, text, dateTime } = req.body;
+    const userId = req.userId;
+
+    const mood = await createMoodService(Number(type), icon, text, dateTime, userId);
+
+    res.status(201).send({ message: 'created', mood: mood });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
 
 // 📌 GET ALL
 
@@ -60,24 +75,6 @@ export const getTodayMoodsController = async (req, res) => {
   }
 };
 
-// 📌 GET BY ID
-
-export const getMoodByIdController = async (req, res) => {
-  try {
-    const idParam = req.params.id;
-
-    const mood = await getMoodByIdService(idParam);
-
-    if (!mood) {
-      return res.status(404).send({ message: 'not found' });
-    }
-
-    res.send({ mood });
-  } catch (err) {
-    res.status(500).send({ message: err.message });
-  }
-};
-
 // 📌 SEARCH
 
 export const searchMoodsController = async (req, res) => {
@@ -92,16 +89,19 @@ export const searchMoodsController = async (req, res) => {
   }
 };
 
-// 📌 CREATE
+// 📌 GET BY ID
 
-export const createMoodController = async (req, res) => {
+export const getMoodByIdController = async (req, res) => {
   try {
-    const { type, icon, text, dateTime } = req.body;
-    const userId = req.userId;
+    const idParam = req.params.id;
 
-    const mood = await createMoodService(Number(type), icon, text, dateTime, userId);
+    const mood = await getMoodByIdService(idParam);
 
-    res.status(201).send({ message: 'created', mood: mood });
+    if (!mood) {
+      return res.status(404).send({ message: 'not found' });
+    }
+
+    res.send({ mood });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

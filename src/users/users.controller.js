@@ -1,26 +1,10 @@
 'use strict';
 
 import {
+  createUserService,
   getAllUsersService,
   getUserByUsernameService,
-  createUserService,
 } from './users.service.js';
-
-// 📌 GET ALL
-
-export const getAllUsersController = async (req, res) => {
-  try {
-    const allUsers = await getAllUsersService();
-
-    if (!allUsers) {
-      return res.status(404).send();
-    }
-
-    res.send(allUsers);
-  } catch (err) {
-    res.status(500).send({ message: err.message });
-  }
-};
 
 // 📌 CREATE
 
@@ -41,6 +25,22 @@ export const createUserController = async (req, res) => {
     const user = await createUserService(req.body);
 
     res.status(201).send({ user: { id: user.id, username } });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 GET ALL
+
+export const getAllUsersController = async (req, res) => {
+  try {
+    const allUsers = await getAllUsersService();
+
+    if (!allUsers) {
+      return res.status(404).send();
+    }
+
+    res.send(allUsers);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
