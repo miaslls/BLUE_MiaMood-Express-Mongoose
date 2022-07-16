@@ -39,17 +39,7 @@
         },
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "token": { "type": "string" }
-                  }
-                }
-              }
-            }
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -69,21 +59,7 @@
         "security": [{ "bearerAuth": [] }],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": { "type": "string" },
-                      "username": { "type": "string" }
-                    }
-                  }
-                }
-              }
-            }
+            "description": "OK"
           },
           "401": {
             "description": "Unauthorized"
@@ -118,18 +94,7 @@
         },
         "responses": {
           "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": { "type": "string" },
-                    "username": { "type": "string" }
-                  }
-                }
-              }
-            }
+            "description": "Created"
           },
           "400": {
             "description": "Bad Request"
@@ -139,6 +104,30 @@
           }
         }
       }
+    },
+    "/moods": {
+      "get": {
+        "summary": "get ALL moods",
+        "description": "returns a list of all moods in DB",
+        "operationId": "getAllMoods",
+        "tags": ["Moods"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {}
     }
   },
   "components": {
@@ -155,6 +144,15 @@
         "properties": {
           "username": { "type": "string" },
           "password": { "type": "string" }
+        }
+      },
+      "Mood": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "number" },
+          "icon": { "type": "string" },
+          "text": { "type": "string" },
+          "dateTime": { "type": "string" }
         }
       }
     }
