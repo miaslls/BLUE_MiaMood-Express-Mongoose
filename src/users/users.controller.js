@@ -6,8 +6,6 @@ import {
   createUserService,
 } from './users.service.js';
 
-import { generateToken } from '../auth/auth.service.js';
-
 // 📌 GET ALL
 
 export const getAllUsersController = async (req, res) => {
