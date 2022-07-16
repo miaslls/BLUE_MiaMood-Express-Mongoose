@@ -40,7 +40,9 @@ export const createUserController = async (req, res) => {
 
     const user = await createUserService(req.body);
 
-    res.status(201).send({ user: { id: user.id, username } });
+    const token = generateToken(user.id);
+
+    res.status(201).send({ user: { id: user.id, username }, token });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

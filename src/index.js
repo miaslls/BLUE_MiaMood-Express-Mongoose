@@ -5,7 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import databaseConnection from './database/dbConnection.js';
 import usersRoute from './users/users.route.js';
-// import authRoute from './auth/auth.route.js';
+import authRoute from './auth/auth.route.js';
 import swaggerRoute from './swagger/swagger.routes.js';
 
 dotenv.config();
@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/users', usersRoute);
-// app.use('/auth', authRoute);
+app.use('/auth', authRoute);
 app.use('/api-docs', swaggerRoute);
 
 app.listen(port, () => {
