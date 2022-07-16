@@ -6,6 +6,7 @@ const router = express.Router();
 import {
   getAllMoodsController,
   getMoodByIdController,
+  searchMoodsController,
   createMoodController,
   updateMoodController,
   deleteMoodController,
@@ -15,8 +16,9 @@ import authMiddleware from '../auth/auth.middleware.js';
 
 router.get('/', authMiddleware, getAllMoodsController);
 router.post('/', authMiddleware, validMoodBody, createMoodController);
-router.get('/:id', authMiddleware, validMoodId, getMoodByIdController);
-router.put('/:id', authMiddleware, validMoodId, validMoodBody, updateMoodController);
-router.delete('/:id', authMiddleware, validMoodId, deleteMoodController);
+router.get('/get/:id', authMiddleware, validMoodId, getMoodByIdController);
+router.put('/update/:id', authMiddleware, validMoodId, validMoodBody, updateMoodController);
+router.delete('/delete/:id', authMiddleware, validMoodId, deleteMoodController);
+router.get('/search', authMiddleware, searchMoodsController);
 
 export default router;

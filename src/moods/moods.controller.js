@@ -3,6 +3,7 @@
 import {
   getAllMoodsService,
   getMoodByIdService,
+  searchMoodsService,
   createMoodService,
   updateMoodService,
   deleteMoodService,
@@ -12,23 +13,13 @@ import {
 
 export const getAllMoodsController = async (req, res) => {
   try {
-    const allMoods = await getAllMoodsService();
+    const moods = await getAllMoodsService();
 
-    if (!allMoods) {
+    if (!moods) {
       return res.status(404).send({ message: 'not found' });
     }
 
-    res.send({
-      allMoods: allMoods.map((mood) => ({
-        user: mood.user,
-        id: mood._id,
-        type: mood.type,
-        icon: mood.icon,
-        text: mood.text,
-        dateTime: mood.dateTime,
-        createdAt: mood.createdAt,
-      })),
-    });
+    res.send({ moods });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -47,6 +38,28 @@ export const getMoodByIdController = async (req, res) => {
     }
 
     res.send({ mood });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 SEARCH
+
+export const searchMoodsController = async (req, res) => {
+  try {
+    const query = req.query.text;
+
+    console.log(query); // 🐞
+
+    const moods = await searchMoodsService(query);
+
+    console.log(moods); // 🐞
+
+    if (!moods) {
+      return res.status(404).send({ message: 'not found' });
+    }
+
+    res.send({ moods });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -72,15 +85,15 @@ export const createMoodController = async (req, res) => {
 export const updateMoodController = async (req, res) => {
   try {
     const idParam = req.params.id;
-    const moodBody = req.body;
+    const body = req.body;
 
-    const chosenMood = await getMoodByIdService(idParam);
+    const moodById = await getMoodByIdService(idParam);
 
-    if (!chosenMood) {
+    if (!moodById) {
       return res.status(404).send({ message: 'not found' });
     }
 
-    const mood = await updateMoodService(idParam, moodBody);
+    const mood = await updateMoodService(idParam, body);
 
     res.send({ message: 'updated', mood: mood });
   } catch (err) {
@@ -94,9 +107,9 @@ export const deleteMoodController = async (req, res) => {
   try {
     const idParam = req.params.id;
 
-    const chosenMood = await getMoodByIdService(idParam);
+    const moodById = await getMoodByIdService(idParam);
 
-    if (!chosenMood) {
+    if (!moodById) {
       return res.status(404).send({ message: 'not found' });
     }
 
