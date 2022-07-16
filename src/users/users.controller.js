@@ -6,6 +6,8 @@ import {
   createUserService,
 } from './users.service.js';
 
+import { generateToken } from '../auth/auth.service.js';
+
 // 📌 GET ALL
 
 export const getAllUsersController = async (req, res) => {
@@ -40,9 +42,7 @@ export const createUserController = async (req, res) => {
 
     const user = await createUserService(req.body);
 
-    const token = generateToken(user.id);
-
-    res.status(201).send({ user: { id: user.id, username }, token });
+    res.status(201).send({ user: { id: user.id, username } });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
