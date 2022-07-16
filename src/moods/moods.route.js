@@ -6,6 +6,7 @@ const router = express.Router();
 import {
   getAllMoodsController,
   getMoodByIdController,
+  getMoodsByDateController,
   searchMoodsController,
   createMoodController,
   updateMoodController,
@@ -16,7 +17,8 @@ import authMiddleware from '../auth/auth.middleware.js';
 
 router.get('/', authMiddleware, getAllMoodsController);
 router.post('/', authMiddleware, validMoodBody, createMoodController);
-router.get('/get/:id', authMiddleware, validMoodId, getMoodByIdController);
+router.get('/date', authMiddleware, getMoodsByDateController);
+router.get('/id/:id', authMiddleware, validMoodId, getMoodByIdController);
 router.put('/update/:id', authMiddleware, validMoodId, validMoodBody, updateMoodController);
 router.delete('/delete/:id', authMiddleware, validMoodId, deleteMoodController);
 router.get('/search', authMiddleware, searchMoodsController);

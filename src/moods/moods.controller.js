@@ -2,6 +2,7 @@
 
 import {
   getAllMoodsService,
+  getMoodsbyDateService,
   getMoodByIdService,
   searchMoodsService,
   createMoodService,
@@ -14,6 +15,30 @@ import {
 export const getAllMoodsController = async (req, res) => {
   try {
     const moods = await getAllMoodsService();
+
+    if (!moods) {
+      return res.status(404).send({ message: 'not found' });
+    }
+
+    res.send({ moods });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 GET BY DATE
+
+export const getMoodsByDateController = async (req, res) => {
+  try {
+    const { year, month, day } = req.query;
+
+    if (!year || !month || !day) {
+      return res.status(400).send({ message: 'bad request' });
+    }
+
+    const date = `${year}-${month}-${day}`;
+
+    const moods = await getMoodsbyDateService(date);
 
     if (!moods) {
       return res.status(404).send({ message: 'not found' });

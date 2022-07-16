@@ -4,6 +4,8 @@ import Mood from './Mood.js';
 
 export const getAllMoodsService = () => Mood.find().sort({ dateTime: -1 }).populate('user');
 
+export const getMoodsbyDateService = (date) => Mood.find({ dateTime: { $regex: `${date}` } });
+
 export const getMoodByIdService = (id) => Mood.findById(id).populate('user');
 
 export const searchMoodsService = (query) => {
