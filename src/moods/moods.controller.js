@@ -1,6 +1,11 @@
 'use strict';
 
-import { getAllMoodsService, createMoodService, getMoodByIdService } from './moods.service.js';
+import {
+  getAllMoodsService,
+  getMoodByIdService,
+  createMoodService,
+  updateMoodService,
+} from './moods.service.js';
 
 // 📌 GET ALL
 
@@ -59,6 +64,27 @@ export const createMoodController = async (req, res) => {
       message: 'created',
       mood: mood,
     });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 UPDATE
+
+export const updateMoodController = async (req, res) => {
+  try {
+    const idParam = req.params.id;
+    const moodBody = req.body;
+
+    const chosenMood = await getMoodByIdService(idParam);
+
+    if (!chosenMood) {
+      return res.status(404).send({ message: 'not found' });
+    }
+
+    const mood = await updateMoodService(idParam, moodBody);
+
+    res.send(mood);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
