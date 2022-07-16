@@ -211,7 +211,7 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "ID of the mood to get, 24 character hexadecimal",
+            "description": "ID of the mood to update, 24 character hexadecimal",
             "schema": {
               "type": "string",
               "example": "62d29c19d0b2160cce3ae915"
@@ -253,7 +253,42 @@
           }
         }
       },
-      "delete": {}
+      "delete": {
+        "summary": "delete mood BY ID",
+        "description": "deletes mood with corresponding ID from DB",
+        "operationId": "deleteMood",
+        "tags": ["Moods"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the mood to delete, 24 character hexadecimal",
+            "schema": {
+              "type": "string",
+              "example": "62d29c19d0b2160cce3ae915"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "components": {
