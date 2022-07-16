@@ -12,6 +12,54 @@
     }
   ],
   "paths": {
+    "/auth": {
+      "post": {
+        "summary": "login auth",
+        "description": "validate login through username and password",
+        "operationId": "login",
+        "tags": ["Auth"],
+        "requestBody": {
+          "description": "username and password",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": { "type": "string" },
+                  "password": { "type": "string" }
+                }
+              },
+              "example": {
+                "username": "sampleuser",
+                "password": "123456"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/users": {
       "get": {
         "summary": "get ALL users",
