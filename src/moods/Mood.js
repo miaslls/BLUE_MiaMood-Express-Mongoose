@@ -9,7 +9,7 @@ const MoodSchema = new mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    type: { type: String, required: true },
+    type: { type: Number, required: true },
     icon: { type: String, required: true },
     text: { type: String },
     dateTime: { type: String, required: true },
