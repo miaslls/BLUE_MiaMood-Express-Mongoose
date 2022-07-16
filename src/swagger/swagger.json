@@ -198,7 +198,62 @@
         }
       }
     },
-    "/moods/get/{id}": {
+    "/moods/date": {
+      "get": {
+        "summary": "get mood BY DATE",
+        "description": "returns a list of all moods from corresponding date",
+        "operationId": "getMoodsByDate",
+        "tags": ["Moods"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "required": true,
+            "description": "4-digit year",
+            "schema": {
+              "type": "string",
+              "example": "2022"
+            }
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": true,
+            "description": "2-digit month",
+            "schema": {
+              "type": "string",
+              "example": "07"
+            }
+          },
+          {
+            "name": "day",
+            "in": "query",
+            "required": true,
+            "description": "2 digit-day",
+            "schema": {
+              "type": "string",
+              "example": "16"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/moods/id/{id}": {
       "get": {
         "summary": "get mood BY ID",
         "description": "returns object with corresponding ID from DB",
