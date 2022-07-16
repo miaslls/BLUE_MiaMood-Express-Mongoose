@@ -16,10 +16,6 @@ export const getAllMoodsController = async (req, res) => {
   try {
     const moods = await getAllMoodsService();
 
-    if (!moods) {
-      return res.status(404).send({ message: 'not found' });
-    }
-
     res.send({ moods });
   } catch (err) {
     res.status(500).send({ message: err.message });
@@ -32,7 +28,7 @@ export const getMoodsByDateController = async (req, res) => {
   try {
     const { year, month, day } = req.query;
 
-    if (!year || !month || !day) {
+    if (!year || !month || !day || year.length !== 4 || month.length !== 2 || day.length !== 2) {
       return res.status(400).send({ message: 'bad request' });
     }
 
@@ -40,9 +36,23 @@ export const getMoodsByDateController = async (req, res) => {
 
     const moods = await getMoodsbyDateService(date);
 
-    if (!moods) {
-      return res.status(404).send({ message: 'not found' });
-    }
+    res.send({ moods });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 GET TODAY
+
+export const getTodayMoodsController = async (req, res) => {
+  try {
+    const today = new Date();
+
+    const year = today.getFullYear().toString().padStart(4, '0');
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+
+    const moods = await getMoodsbyDateService(`${year}-${month}-${day}`);
 
     res.send({ moods });
   } catch (err) {
@@ -74,15 +84,7 @@ export const searchMoodsController = async (req, res) => {
   try {
     const query = req.query.text;
 
-    console.log(query); // 🐞
-
     const moods = await searchMoodsService(query);
-
-    console.log(moods); // 🐞
-
-    if (!moods) {
-      return res.status(404).send({ message: 'not found' });
-    }
 
     res.send({ moods });
   } catch (err) {

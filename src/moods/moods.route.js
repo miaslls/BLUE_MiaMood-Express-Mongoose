@@ -7,6 +7,7 @@ import {
   getAllMoodsController,
   getMoodByIdController,
   getMoodsByDateController,
+  getTodayMoodsController,
   searchMoodsController,
   createMoodController,
   updateMoodController,
@@ -18,6 +19,7 @@ import authMiddleware from '../auth/auth.middleware.js';
 router.get('/', authMiddleware, getAllMoodsController);
 router.post('/', authMiddleware, validMoodBody, createMoodController);
 router.get('/date', authMiddleware, getMoodsByDateController);
+router.get('/date/today', authMiddleware, getTodayMoodsController);
 router.get('/id/:id', authMiddleware, validMoodId, getMoodByIdController);
 router.put('/update/:id', authMiddleware, validMoodId, validMoodBody, updateMoodController);
 router.delete('/delete/:id', authMiddleware, validMoodId, deleteMoodController);
