@@ -13,10 +13,16 @@ export const validMoodId = (req, res, next) => {
 };
 
 export const validMoodBody = (req, res, next) => {
-  const { type, icon, dateTime, createdAt } = req.body;
+  const { type, icon, dateTime } = req.body;
 
-  if (!type || !icon || !dateTime || !createdAt) {
+  if (!type || !icon || !dateTime) {
     return res.status(400).send({ message: 'incomplete data' });
+  }
+
+  type = Number(type);
+
+  if (type < 0 || type > 6 || isNaN(type)) {
+    return res.status(400).send({ messae: 'invalid type' });
   }
 
   next();

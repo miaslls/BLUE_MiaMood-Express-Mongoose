@@ -1,6 +1,8 @@
 'use strict';
 
-import { getAllMoodsService } from './moods.service.js';
+import { getAllMoodsService, createMoodService } from './moods.service.js';
+
+// 📌 GET ALL
 
 export const getAllMoodsController = async (req, res) => {
   try {
@@ -20,6 +22,24 @@ export const getAllMoodsController = async (req, res) => {
         dateTime: mood.dateTime,
         createdAt: mood.createdAt,
       })),
+    });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 CREATE
+
+export const createMoodController = async (req, res) => {
+  try {
+    const { type, icon, text, dateTime } = req.body;
+    const userId = req.userId;
+
+    const mood = await createMoodService(Number(type), icon, text, dateTime, userId);
+
+    res.status(201).send({
+      message: 'created',
+      mood: mood,
     });
   } catch (err) {
     res.status(500).send({ message: err.message });
