@@ -5,6 +5,7 @@ import {
   getMoodByIdService,
   createMoodService,
   updateMoodService,
+  deleteMoodService,
 } from './moods.service.js';
 
 // 📌 GET ALL
@@ -45,7 +46,7 @@ export const getMoodByIdController = async (req, res) => {
       return res.status(404).send({ message: 'not found' });
     }
 
-    res.send(mood);
+    res.send({ mood });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -60,10 +61,7 @@ export const createMoodController = async (req, res) => {
 
     const mood = await createMoodService(Number(type), icon, text, dateTime, userId);
 
-    res.status(201).send({
-      message: 'created',
-      mood: mood,
-    });
+    res.status(201).send({ message: 'created', mood: mood });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -84,7 +82,27 @@ export const updateMoodController = async (req, res) => {
 
     const mood = await updateMoodService(idParam, moodBody);
 
-    res.send(mood);
+    res.send({ message: 'updated', mood: mood });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 DELETE
+
+export const deleteMoodController = async (req, res) => {
+  try {
+    const idParam = req.params.id;
+
+    const chosenMood = await getMoodByIdService(idParam);
+
+    if (!chosenMood) {
+      return res.status(404).send({ message: 'not found' });
+    }
+
+    await deleteMoodService(idParam);
+
+    res.send({ message: 'deleted' });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

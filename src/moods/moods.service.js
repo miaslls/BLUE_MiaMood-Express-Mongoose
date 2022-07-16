@@ -13,3 +13,5 @@ export const createMoodService = (type, icon, text, dateTime, userId) => {
 export const updateMoodService = (id, body) => {
   return Mood.findByIdAndUpdate(id, body).setOptions({ returnOriginal: false });
 };
+
+export const deleteMoodService = (id) => Mood.findByIdAndDelete(id);
