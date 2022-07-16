@@ -127,7 +127,40 @@
           }
         }
       },
-      "post": {}
+      "post": {
+        "summary": "create NEW mood",
+        "description": "creates new mood in DB from body",
+        "operationId": "createMood",
+        "tags": ["Moods"],
+        "requestBody": {
+          "description": "new mood body",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Mood"
+              },
+              "example": {
+                "type": "2",
+                "icon": "⭐",
+                "text": "sampleText",
+                "dateTime": "2022-04-23T05:35:07"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "components": {
