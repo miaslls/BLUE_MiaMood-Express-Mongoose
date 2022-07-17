@@ -14,10 +14,10 @@ import {
 
 export const createMoodController = async (req, res) => {
   try {
-    const { type, icon, text, dateTime } = req.body;
     const userId = req.userId;
+    const { type, icon, text, dateTime } = req.body;
 
-    const mood = await createMoodService(Number(type), icon, text, dateTime, userId);
+    const mood = await createMoodService(userId, Number(type), icon, text, dateTime);
 
     res.status(201).send({ message: 'created', mood: mood });
   } catch (err) {
@@ -29,7 +29,9 @@ export const createMoodController = async (req, res) => {
 
 export const getAllMoodsController = async (req, res) => {
   try {
-    const moods = await getAllMoodsService();
+    const userId = req.userId;
+
+    const moods = await getAllMoodsService(userId);
 
     res.send({ moods });
   } catch (err) {
@@ -41,6 +43,7 @@ export const getAllMoodsController = async (req, res) => {
 
 export const getMoodsByDateController = async (req, res) => {
   try {
+    const userId = req.userId;
     const { year, month, day } = req.query;
 
     if (!year || !month || !day || year.length !== 4 || month.length !== 2 || day.length !== 2) {
@@ -49,7 +52,7 @@ export const getMoodsByDateController = async (req, res) => {
 
     const date = `${year}-${month}-${day}`;
 
-    const moods = await getMoodsbyDateService(date);
+    const moods = await getMoodsbyDateService(userId, date);
 
     res.send({ moods });
   } catch (err) {
@@ -61,13 +64,15 @@ export const getMoodsByDateController = async (req, res) => {
 
 export const getTodayMoodsController = async (req, res) => {
   try {
+    const userId = req.userId;
+
     const today = new Date();
 
     const year = today.getFullYear().toString().padStart(4, '0');
     const month = (today.getMonth() + 1).toString().padStart(2, '0');
     const day = today.getDate().toString().padStart(2, '0');
 
-    const moods = await getMoodsbyDateService(`${year}-${month}-${day}`);
+    const moods = await getMoodsbyDateService(userId, `${year}-${month}-${day}`);
 
     res.send({ moods });
   } catch (err) {
@@ -79,9 +84,10 @@ export const getTodayMoodsController = async (req, res) => {
 
 export const searchMoodsController = async (req, res) => {
   try {
+    const userId = req.userId;
     const query = req.query.text;
 
-    const moods = await searchMoodsService(query);
+    const moods = await searchMoodsService(userId, query);
 
     res.send({ moods });
   } catch (err) {
@@ -93,9 +99,10 @@ export const searchMoodsController = async (req, res) => {
 
 export const getMoodByIdController = async (req, res) => {
   try {
+    const userId = req.userId;
     const idParam = req.params.id;
 
-    const mood = await getMoodByIdService(idParam);
+    const mood = await getMoodByIdService(userId, idParam);
 
     if (!mood) {
       return res.status(404).send({ message: 'not found' });
@@ -111,16 +118,17 @@ export const getMoodByIdController = async (req, res) => {
 
 export const updateMoodController = async (req, res) => {
   try {
+    const userId = req.userId;
     const idParam = req.params.id;
     const body = req.body;
 
-    const moodById = await getMoodByIdService(idParam);
+    const moodById = await getMoodByIdService(userId, idParam);
 
     if (!moodById) {
       return res.status(404).send({ message: 'not found' });
     }
 
-    const mood = await updateMoodService(idParam, body);
+    const mood = await updateMoodService(userId, idParam, body);
 
     res.send({ message: 'updated', mood: mood });
   } catch (err) {
@@ -132,15 +140,16 @@ export const updateMoodController = async (req, res) => {
 
 export const deleteMoodController = async (req, res) => {
   try {
+    const userId = req.userId;
     const idParam = req.params.id;
 
-    const moodById = await getMoodByIdService(idParam);
+    const moodById = await getMoodByIdService(userId, idParam);
 
     if (!moodById) {
       return res.status(404).send({ message: 'not found' });
     }
 
-    await deleteMoodService(idParam);
+    await deleteMoodService(userId, idParam);
 
     res.send({ message: 'deleted' });
   } catch (err) {

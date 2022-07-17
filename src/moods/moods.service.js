@@ -2,30 +2,36 @@
 
 import Mood from './Mood.js';
 
-export const createMoodService = (type, icon, text, dateTime, userId) => {
+export const createMoodService = (userId, type, icon, text, dateTime) => {
   return Mood.create({ type, icon, text, dateTime, user: userId });
 };
 
-export const getAllMoodsService = () => {
-  return Mood.find().sort({ dateTime: -1 }).populate('user');
+export const getAllMoodsService = (userId) => {
+  return Mood.find({ user: userId }).sort({ dateTime: -1 }).populate('user');
 };
 
-export const getMoodsbyDateService = (date) => {
-  return Mood.find({ dateTime: { $regex: `${date}` } });
+export const getMoodsbyDateService = (userId, date) => {
+  return Mood.find({ user: userId, dateTime: { $regex: `${date}` } })
+    .sort({ dateTime: -1 })
+    .populate('user');
 };
 
-export const searchMoodsService = (query) => {
-  return Mood.find({ text: { $regex: `${query || ''}`, $options: 'i' } }).populate('user');
+export const searchMoodsService = (userId, query) => {
+  return Mood.find({ user: userId, text: { $regex: `${query || ''}`, $options: 'i' } })
+    .sort({ dateTime: -1 })
+    .populate('user');
 };
 
-export const getMoodByIdService = (id) => {
-  return Mood.findById(id).populate('user');
+export const getMoodByIdService = (userId, id) => {
+  return Mood.findOne({ user: userId, _id: id }).populate('user');
 };
 
-export const updateMoodService = (id, body) => {
-  return Mood.findByIdAndUpdate(id, body).setOptions({ returnOriginal: false });
+export const updateMoodService = (userId, id, body) => {
+  return Mood.findOneAndUpdate({ user: userId, _id: id }, body).setOptions({
+    returnOriginal: false,
+  });
 };
 
-export const deleteMoodService = (id) => {
-  return Mood.findByIdAndDelete(id);
+export const deleteMoodService = (userId, id) => {
+  return Mood.findOneAndDelete({ user: userId, _id: id });
 };
