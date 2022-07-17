@@ -143,7 +143,7 @@
       },
       "get": {
         "summary": "get ALL moods",
-        "description": "returns a list of all moods in DB",
+        "description": "returns a list of all moods",
         "operationId": "getAllMoods",
         "tags": ["Moods"],
         "security": [{ "bearerAuth": [] }],
@@ -267,7 +267,7 @@
     "/moods/id/{id}": {
       "get": {
         "summary": "get mood BY ID",
-        "description": "returns object with corresponding ID from DB",
+        "description": "returns object with corresponding ID",
         "operationId": "getMoodById",
         "tags": ["Moods"],
         "security": [{ "bearerAuth": [] }],
@@ -305,7 +305,7 @@
     "/moods/update/{id}": {
       "put": {
         "summary": "update mood BY ID",
-        "description": "updates mood with corresponding ID in DB from body",
+        "description": "updates mood with corresponding ID from body",
         "operationId": "updateMood",
         "tags": ["Moods"],
         "security": [{ "bearerAuth": [] }],
@@ -360,7 +360,7 @@
     "/moods/delete/{id}": {
       "delete": {
         "summary": "delete mood BY ID",
-        "description": "deletes mood with corresponding ID from DB",
+        "description": "deletes mood with corresponding ID",
         "operationId": "deleteMood",
         "tags": ["Moods"],
         "security": [{ "bearerAuth": [] }],
