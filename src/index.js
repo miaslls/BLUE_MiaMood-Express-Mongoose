@@ -7,7 +7,7 @@ import databaseConnection from './database/dbConnection.js';
 import authRoute from './auth/auth.route.js';
 import usersRoute from './users/users.route.js';
 import moodsRoute from './moods/moods.route.js';
-import swaggerRoute from './swagger/swagger.routes.js';
+import swaggerRoute from './swagger/swagger.route.js';
 
 dotenv.config();
 
