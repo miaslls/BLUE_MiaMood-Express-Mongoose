@@ -136,7 +136,7 @@ export const updateMoodController = async (req, res) => {
       return res.status(401).send({ message: 'unauthorized' });
     }
 
-    const mood = await updateMoodService(userId, idParam, body);
+    const mood = await updateMoodService(idParam, body);
 
     res.send({ message: 'updated', mood: mood });
   } catch (err) {
