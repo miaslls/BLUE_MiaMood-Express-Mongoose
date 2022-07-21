@@ -22,16 +22,14 @@ export const searchMoodsService = (userId, query) => {
     .populate('user');
 };
 
-export const getMoodByIdService = (userId, id) => {
-  return Mood.findOne({ user: userId, _id: id }).populate('user');
+export const getMoodByIdService = (id) => {
+  return Mood.findById(id).populate('user');
 };
 
-export const updateMoodService = (userId, id, body) => {
-  return Mood.findOneAndUpdate({ user: userId, _id: id }, body).setOptions({
-    returnOriginal: false,
-  });
+export const updateMoodService = (id, body) => {
+  return Mood.findByIdAndUpdate(id, body).setOptions({ returnOriginal: false });
 };
 
-export const deleteMoodService = (userId, id) => {
-  return Mood.findOneAndDelete({ user: userId, _id: id });
+export const deleteMoodService = (id) => {
+  return Mood.findOneAndDelete(id);
 };

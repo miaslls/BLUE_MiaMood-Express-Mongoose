@@ -102,10 +102,14 @@ export const getMoodByIdController = async (req, res) => {
     const userId = req.userId;
     const idParam = req.params.id;
 
-    const mood = await getMoodByIdService(userId, idParam);
+    const mood = await getMoodByIdService(idParam);
 
     if (!mood) {
       return res.status(404).send({ message: 'not found' });
+    }
+
+    if (mood.user.id !== userId) {
+      return res.status(401).send({ message: 'unauthorized' });
     }
 
     res.send({ mood });
@@ -122,10 +126,14 @@ export const updateMoodController = async (req, res) => {
     const idParam = req.params.id;
     const body = req.body;
 
-    const moodById = await getMoodByIdService(userId, idParam);
+    const moodById = await getMoodByIdService(idParam);
 
     if (!moodById) {
       return res.status(404).send({ message: 'not found' });
+    }
+
+    if (moodById.user.id !== userId) {
+      return res.status(401).send({ message: 'unauthorized' });
     }
 
     const mood = await updateMoodService(userId, idParam, body);
@@ -143,13 +151,17 @@ export const deleteMoodController = async (req, res) => {
     const userId = req.userId;
     const idParam = req.params.id;
 
-    const moodById = await getMoodByIdService(userId, idParam);
+    const moodById = await getMoodByIdService(idParam);
 
     if (!moodById) {
       return res.status(404).send({ message: 'not found' });
     }
 
-    await deleteMoodService(userId, idParam);
+    if (moodById.user.id !== userId) {
+      return res.status(401).send({ message: 'unauthorized' });
+    }
+
+    await deleteMoodService(idParam);
 
     res.send({ message: 'deleted' });
   } catch (err) {
