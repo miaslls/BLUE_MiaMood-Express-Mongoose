@@ -36,7 +36,7 @@ export const getAllMoodsController = async (req, res) => {
     // const moods = await getAllMoodsService(userId);
     const moods = await getAllMoodsService();
 
-    res.send({ moods });
+    res.send(moods);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
