@@ -14,15 +14,15 @@ import {
   deleteMoodController,
 } from './moods.controller.js';
 import { validMoodId, validMoodBody } from './moods.middleware.js';
-import authMiddleware from '../auth/auth.middleware.js';
+// import authMiddleware from '../auth/auth.middleware.js';
 
-router.post('/', authMiddleware, validMoodBody, createMoodController);
-router.get('/', authMiddleware, getAllMoodsController);
-router.get('/date', authMiddleware, getMoodsByDateController);
-router.get('/date/today', authMiddleware, getTodayMoodsController);
-router.get('/search', authMiddleware, searchMoodsController);
-router.get('/id/:id', authMiddleware, validMoodId, getMoodByIdController);
-router.put('/update/:id', authMiddleware, validMoodId, validMoodBody, updateMoodController);
-router.delete('/delete/:id', authMiddleware, validMoodId, deleteMoodController);
+router.post('/', validMoodBody, createMoodController);
+router.get('/', getAllMoodsController);
+router.get('/date', getMoodsByDateController);
+router.get('/date/today', getTodayMoodsController);
+router.get('/search', searchMoodsController);
+router.get('/id/:id', validMoodId, getMoodByIdController);
+router.put('/update/:id', validMoodId, validMoodBody, updateMoodController);
+router.delete('/delete/:id', validMoodId, deleteMoodController);
 
 export default router;
