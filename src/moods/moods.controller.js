@@ -36,7 +36,7 @@ export const getAllMoodsController = async (req, res) => {
     // const moods = await getAllMoodsService(userId);
     const moods = await getAllMoodsService();
 
-    res.send(moods);
+    res.send({ moods: moods });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -58,7 +58,7 @@ export const getMoodsByDateController = async (req, res) => {
     // const moods = await getMoodsbyDateService(userId, date);
     const moods = await getMoodsbyDateService(date);
 
-    res.send({ moods });
+    res.send({ moods: moods });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -79,7 +79,7 @@ export const getTodayMoodsController = async (req, res) => {
     // const moods = await getMoodsbyDateService(userId, `${year}-${month}-${day}`);
     const moods = await getMoodsbyDateService(`${year}-${month}-${day}`);
 
-    res.send({ moods });
+    res.send({ moods: moods });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -95,7 +95,7 @@ export const searchMoodsController = async (req, res) => {
     // const moods = await searchMoodsService(userId, query);
     const moods = await searchMoodsService(query);
 
-    res.send({ moods });
+    res.send({ moods: moods });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -118,7 +118,7 @@ export const getMoodByIdController = async (req, res) => {
     //   return res.status(401).send({ message: 'unauthorized' });
     // }
 
-    res.send({ mood });
+    res.send({ mood: mood });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
