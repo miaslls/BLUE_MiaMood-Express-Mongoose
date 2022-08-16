@@ -15,7 +15,10 @@ export const createMoodService = (type, text, date, time) => {
 // };
 
 export const getAllMoodsService = () => {
-  return Mood.find().sort({ time: -1, date: -1 });
+  return Mood.find().sort([
+    ['date', -1],
+    ['time', -1],
+  ]);
 };
 
 // export const getMoodsbyDateService = (userId, date) => {
