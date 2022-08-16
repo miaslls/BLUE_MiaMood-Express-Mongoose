@@ -13,9 +13,9 @@ export const validMoodId = (req, res, next) => {
 };
 
 export const validMoodBody = (req, res, next) => {
-  let { type, icon, dateTime } = req.body;
+  let { type, icon, date, time } = req.body;
 
-  if (!type || !icon || !dateTime) {
+  if (!type || !icon || !date || !time) {
     return res.status(400).send({ message: 'incomplete data' });
   }
 

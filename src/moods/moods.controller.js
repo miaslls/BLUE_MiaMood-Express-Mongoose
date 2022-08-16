@@ -16,10 +16,10 @@ export const createMoodController = async (req, res) => {
   try {
     // const userId = req.userId;
     // const { type, icon, text, dateTime } = req.body;
-    const { type, text, dateTime } = req.body;
+    const { type, text, date, time } = req.body;
 
     // const mood = await createMoodService(userId, Number(type), icon, text, dateTime);
-    const mood = await createMoodService(Number(type), text, dateTime);
+    const mood = await createMoodService(Number(type), text, date, time);
 
     res.status(201).send({ message: 'created', mood: mood });
   } catch (err) {

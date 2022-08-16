@@ -12,7 +12,8 @@ const MoodSchema = new mongoose.Schema(
     // icon: { type: String, required: true },
     type: { type: Number, required: true },
     text: { type: String },
-    dateTime: { type: String, required: true },
+    date: { type: String, required: true },
+    time: { type: String, required: true },
   },
   { versionKey: false },
 );

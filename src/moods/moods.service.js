@@ -6,8 +6,8 @@ import Mood from './Mood.js';
 //   return Mood.create({ type, icon, text, dateTime, user: userId });
 // };
 
-export const createMoodService = (type, text, dateTime) => {
-  return Mood.create({ type, text, dateTime });
+export const createMoodService = (type, text, date, time) => {
+  return Mood.create({ type, text, date, time });
 };
 
 // export const getAllMoodsService = (userId) => {
@@ -15,7 +15,7 @@ export const createMoodService = (type, text, dateTime) => {
 // };
 
 export const getAllMoodsService = () => {
-  return Mood.find().sort({ dateTime: -1 });
+  return Mood.find().sort({ time: -1 }).sort({ date: -1 });
 };
 
 // export const getMoodsbyDateService = (userId, date) => {
@@ -25,7 +25,7 @@ export const getAllMoodsService = () => {
 // };
 
 export const getMoodsbyDateService = (date) => {
-  return Mood.find({ dateTime: { $regex: `${date}` } }).sort({ dateTime: -1 });
+  return Mood.find({ dateTime: { $regex: `${date}` } }); // .sort({ dateTime: -1 });
 };
 
 // export const searchMoodsService = (userId, query) => {
@@ -35,7 +35,7 @@ export const getMoodsbyDateService = (date) => {
 // };
 
 export const searchMoodsService = (query) => {
-  return Mood.find({ text: { $regex: `${query || ''}`, $options: 'i' } }).sort({ dateTime: -1 });
+  return Mood.find({ text: { $regex: `${query || ''}`, $options: 'i' } }); // .sort({ dateTime: -1 });
 };
 
 // export const getMoodByIdService = (id) => {
