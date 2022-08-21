@@ -54,5 +54,5 @@ export const updateMoodService = (id, body) => {
 };
 
 export const deleteMoodService = (id) => {
-  return Mood.findOneAndDelete(id);
+  return Mood.findByIdAndDelete(id);
 };
