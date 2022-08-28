@@ -28,7 +28,7 @@ export const getAllMoodsService = () => {
 // };
 
 export const getMoodsbyDateService = (date) => {
-  return Mood.find({ dateTime: { $regex: `${date}` } }); // .sort({ dateTime: -1 });
+  return Mood.find({ date: date }); // .sort({ dateTime: -1 });
 };
 
 // export const searchMoodsService = (userId, query) => {
