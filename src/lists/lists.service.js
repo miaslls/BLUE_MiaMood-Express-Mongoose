@@ -11,3 +11,7 @@ export const getAllListsService = () => {
 export const updateListService = (id, body) => {
   return List.findByIdAndUpdate(id, body).setOptions({ returnOriginal: false });
 };
+
+export const deleteListService = (id) => {
+  return List.findByIdAndDelete(id);
+};

@@ -1,4 +1,9 @@
-import { createListService, getAllListsService, updateListService } from './lists.service.js';
+import {
+  createListService,
+  deleteListService,
+  getAllListsService,
+  updateListService,
+} from './lists.service.js';
 
 // 📌 CREATE
 
@@ -35,6 +40,19 @@ export const updateListController = async (req, res) => {
     const list = await updateListService(idParam, body);
 
     res.send({ message: 'updated', list: list });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 DELETE
+
+export const deleteListController = async (req, res) => {
+  try {
+    const idParam = req.params.id;
+    await deleteListService(idParam);
+
+    res.send({ message: 'deleted' });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
