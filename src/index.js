@@ -9,6 +9,7 @@ import databaseConnection from './database/dbConnection.js';
 // import swaggerRoute from './swagger/swagger.route.js';
 
 import moodsRoute from './moods/moods.route.js';
+import listsRoute from './lists/lists.route.js';
 import 'dotenv/config';
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(express.json());
 // app.use('/api-docs', swaggerRoute);
 
 app.use('/moods', moodsRoute);
+app.use('/lists', listsRoute);
 
 app.listen(port, () => {
   console.log(`server running @ port ${port}`);

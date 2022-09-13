@@ -9,6 +9,6 @@ const ListSchema = new mongoose.Schema(
   { versionKey: false },
 );
 
-const List = mongoose.Model('List', ListSchema, 'lists');
+const List = mongoose.model('List', ListSchema, 'lists');
 
 export default List;
