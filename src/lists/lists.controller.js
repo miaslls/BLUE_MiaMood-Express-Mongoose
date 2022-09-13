@@ -1,4 +1,4 @@
-import { createListService, getAllListsService } from './lists.service.js';
+import { createListService, getAllListsService, updateListService } from './lists.service.js';
 
 // 📌 CREATE
 
@@ -20,6 +20,21 @@ export const getAllListsController = async (req, res) => {
     const lists = await getAllListsService();
 
     res.send({ lists: lists });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 UPDATE
+
+export const updateListController = async (req, res) => {
+  try {
+    const idParam = req.params.id;
+    const body = req.body;
+
+    const list = await updateListService(idParam, body);
+
+    res.send({ message: 'updated', list: list });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

@@ -5,6 +5,9 @@ export const createListService = (name, icon) => {
 };
 
 export const getAllListsService = () => {
-  // return List.find().sort([['name', -1]]);
-  return List.find();
+  return List.find().sort([['name', 1]]);
+};
+
+export const updateListService = (id, body) => {
+  return List.findByIdAndUpdate(id, body).setOptions({ returnOriginal: false });
 };
