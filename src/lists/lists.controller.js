@@ -2,6 +2,7 @@ import {
   createListService,
   deleteListService,
   getAllListsService,
+  getListByIdService,
   updateListService,
 } from './lists.service.js';
 
@@ -25,6 +26,20 @@ export const getAllListsController = async (req, res) => {
     const lists = await getAllListsService();
 
     res.send({ lists: lists });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 GET BY ID
+
+export const getListByIdController = async (req, res) => {
+  try {
+    const idParam = req.params.id;
+
+    const list = await getListByIdService(idParam);
+
+    res.send({ list: list });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
