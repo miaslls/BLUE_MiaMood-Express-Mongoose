@@ -1,8 +1,12 @@
 import express from 'express';
 const router = express.Router();
 
-import { createListEntryController } from './listEntries.controller.js';
+import {
+  createListEntryController,
+  getAllListEntriesController,
+} from './listEntries.controller.js';
 
 router.post('/', createListEntryController);
+router.get('/', getAllListEntriesController);
 
 export default router;
