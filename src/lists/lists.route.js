@@ -3,10 +3,10 @@ const router = express.Router();
 
 import {
   createListController,
-  deleteListController,
   getAllListsController,
   getListByIdController,
   updateListController,
+  deleteListController,
 } from './lists.controller.js';
 
 router.post('/', createListController);
