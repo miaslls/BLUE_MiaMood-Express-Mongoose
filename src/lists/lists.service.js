@@ -15,7 +15,7 @@ export const getListByIdService = (id) => {
 };
 
 export const updateListService = (id, body) => {
-  return List.findByIdAndUpdate(id, body).setOptions({ returnOriginal: false });
+  return List.findByIdAndUpdate(id, body).setOptions({ returnOriginal: false }).populate('entries');
 };
 
 export const deleteListService = (id) => {
