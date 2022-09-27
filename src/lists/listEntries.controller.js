@@ -17,7 +17,7 @@ export const createListEntryController = async (req, res) => {
     const body = { entries: [...listToUpdate.entries, listEntry._id] };
     const updatedList = await updateListService(list, body);
 
-    res.status(201).send({ message: 'created', listEntry: listEntry, list: updatedList });
+    res.status(201).send({ message: 'created', listEntry: listEntry });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
@@ -61,11 +61,11 @@ export const deleteListEntryController = async (req, res) => {
     const listToUpdate = await getListByIdService(deletedEntry.list);
     const deletedEntryIndex = listToUpdate.entries.indexOf(idParam);
     listToUpdate.entries.splice(deletedEntryIndex, 1);
+
     const body = { entries: listToUpdate.entries };
     const updatedList = await updateListService(listToUpdate._id, body);
-    console.log(body); // 🐞
 
-    res.send({ message: 'deleted', listEntry: deletedEntry, list: updatedList });
+    res.send({ message: 'deleted', listEntry: deletedEntry });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
