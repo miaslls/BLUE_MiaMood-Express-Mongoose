@@ -1,5 +1,6 @@
 import {
   createListEntryService,
+  deleteListEntryService,
   getAllListEntriesService,
   updateListEntryService,
 } from './listEntries.service.js';
@@ -44,6 +45,27 @@ export const updateListEntryController = async (req, res) => {
     const listEntry = await updateListEntryService(idParam, body);
 
     res.send({ message: 'updated', listEntry: listEntry });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 DELETE
+
+export const deleteListEntryController = async (req, res) => {
+  try {
+    const idParam = req.params.id;
+
+    const deletedEntry = await deleteListEntryService(idParam);
+
+    const listToUpdate = await getListByIdService(deletedEntry.list);
+    const deletedEntryIndex = listToUpdate.entries.indexOf(idParam);
+    listToUpdate.entries.splice(deletedEntryIndex, 1);
+    const body = { entries: listToUpdate.entries };
+    const updatedList = await updateListService(listToUpdate._id, body);
+    console.log(body); // 🐞
+
+    res.send({ message: 'deleted', listEntry: deletedEntry, list: updatedList });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
