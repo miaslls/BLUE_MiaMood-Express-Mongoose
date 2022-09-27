@@ -7,3 +7,7 @@ export const createListEntryService = (list, text, starred, completed) => {
 export const getAllListEntriesService = () => {
   return ListEntry.find().sort([['list', 1]]);
 };
+
+export const updateListEntryService = (id, body) => {
+  return ListEntry.findByIdAndUpdate(id, body).setOptions({ returnOriginal: false });
+};
