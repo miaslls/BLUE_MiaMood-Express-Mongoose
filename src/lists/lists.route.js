@@ -11,8 +11,8 @@ import {
 
 router.post('/', createListController);
 router.get('/', getAllListsController);
-router.get('/id/:id', getListByIdController);
-router.patch('/update/:id', updateListController);
-router.delete('/delete/:id', deleteListController);
+router.get('/:id', getListByIdController);
+router.patch('/:id', updateListController);
+router.delete('/:id', deleteListController);
 
 export default router;
