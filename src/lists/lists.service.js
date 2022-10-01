@@ -5,9 +5,7 @@ export const createListService = (name, icon) => {
 };
 
 export const getAllListsService = () => {
-  return List.find()
-    .sort([['name', 1]])
-    .populate('entries');
+  return List.find().populate('entries');
 };
 
 export const getListByIdService = (id) => {
