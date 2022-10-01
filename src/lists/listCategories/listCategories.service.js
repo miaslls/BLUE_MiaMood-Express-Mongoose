@@ -11,3 +11,11 @@ export const getAllListCategoriesService = () => {
 export const getListCategoryByIdService = (id) => {
   return ListCategory.findById(id);
 };
+
+export const updateListCategoryService = (id, body) => {
+  return ListCategory.findByIdAndUpdate(id, body).setOptions({ returnOriginal: false });
+};
+
+export const deleteListCategoryService = (id) => {
+  return ListCategory.findByIdAndDelete(id);
+};

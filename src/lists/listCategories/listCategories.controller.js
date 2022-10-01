@@ -2,6 +2,8 @@ import {
   createListCategoryService,
   getAllListCategoriesService,
   getListCategoryByIdService,
+  updateListCategoryService,
+  deleteListCategoryService,
 } from './listCategories.service.js';
 
 // 📌 CREATE
@@ -38,6 +40,34 @@ export const getListCategoryByIdController = async (req, res) => {
     const listCategory = await getListCategoryByIdService(idParam);
 
     res.send({ listCategory: listCategory });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 UPDATE
+
+export const updateListCategoryController = async (req, res) => {
+  try {
+    const idParam = req.params.id;
+    const body = req.body;
+
+    const listCategory = await updateListCategoryService(idParam, body);
+
+    res.send({ message: 'updated', listCategory: listCategory });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 DELETE
+
+export const deleteListCategoryController = async (req, res) => {
+  try {
+    const idParam = req.params.id;
+    await deleteListCategoryService(idParam);
+
+    res.send({ message: 'deleted' });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
