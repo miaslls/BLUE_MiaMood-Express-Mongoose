@@ -1,6 +1,7 @@
 import {
   createListCategoryService,
   getAllListCategoriesService,
+  getListCategoryByIdService,
 } from './listCategories.service.js';
 
 // 📌 CREATE
@@ -23,6 +24,20 @@ export const getAllListCategoriesController = async (req, res) => {
     const listCategories = await getAllListCategoriesService();
 
     res.send({ listCategories: listCategories });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 GET BY ID
+
+export const getListCategoryByIdController = async (req, res) => {
+  try {
+    const idParam = req.params.id;
+
+    const listCategory = await getListCategoryByIdService(idParam);
+
+    res.send({ listCategory: listCategory });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

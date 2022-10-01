@@ -7,3 +7,7 @@ export const createListCategoryService = (name, icon) => {
 export const getAllListCategoriesService = () => {
   return ListCategory.find();
 };
+
+export const getListCategoryByIdService = (id) => {
+  return ListCategory.findById(id);
+};
