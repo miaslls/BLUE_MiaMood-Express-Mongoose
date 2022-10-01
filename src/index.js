@@ -9,6 +9,7 @@ import 'dotenv/config';
 
 import moodsRoute from './moods/moods.route.js';
 import listsRoute from './lists/lists.route.js';
+import listCategoriesRoute from './lists/listCategories/listCategories.route.js';
 import listEntriesRoute from './lists/listEntries/listEntries.route.js';
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(express.json());
 
 app.use('/moods', moodsRoute);
 app.use('/lists', listsRoute);
+app.use('/list-categories', listCategoriesRoute);
 app.use('/list-entries', listEntriesRoute);
 
 app.listen(port, () => {
