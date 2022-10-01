@@ -9,7 +9,7 @@ import 'dotenv/config';
 
 import moodsRoute from './moods/moods.route.js';
 import listsRoute from './lists/lists.route.js';
-import listEntriesRoute from './lists/listEntries.route.js';
+import listEntriesRoute from './lists/listEntries/listEntries.route.js';
 
 const app = express();
 const port = process.env.PORT || 3001;

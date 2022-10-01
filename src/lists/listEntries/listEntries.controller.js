@@ -4,7 +4,7 @@ import {
   getAllListEntriesService,
   updateListEntryService,
 } from './listEntries.service.js';
-import { getListByIdService, updateListService } from './lists.service.js';
+import { getListByIdService, updateListService } from '../lists.service.js';
 
 // 📌 CREATE
 
@@ -15,7 +15,7 @@ export const createListEntryController = async (req, res) => {
 
     const listToUpdate = await getListByIdService(list);
     const body = { entries: [...listToUpdate.entries, listEntry._id] };
-    const updatedList = await updateListService(list, body);
+    await updateListService(list, body);
 
     res.status(201).send({ message: 'created', listEntry: listEntry });
   } catch (err) {
@@ -63,7 +63,7 @@ export const deleteListEntryController = async (req, res) => {
     listToUpdate.entries.splice(deletedEntryIndex, 1);
 
     const body = { entries: listToUpdate.entries };
-    const updatedList = await updateListService(listToUpdate._id, body);
+    await updateListService(listToUpdate._id, body);
 
     res.send({ message: 'deleted', listEntry: deletedEntry });
   } catch (err) {
