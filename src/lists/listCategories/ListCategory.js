@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 const ListCategorySchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
-    icon: { type: String, required: true, unique: true },
   },
   { versionKey: false },
 );

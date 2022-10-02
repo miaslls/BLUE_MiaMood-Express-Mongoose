@@ -10,17 +10,22 @@ const authMiddleware = (req, res, next) => {
     return res.status(401).send({ message: 'token not provided' });
   }
 
-  const headerParts = authHeader.split(' ');
-
-  if (headerParts.length !== 2) {
-    return res.status(401).send({ message: 'invalid token' });
+  // ❗❗❗ 🔻 untested
+  const [_, token] = /^Bearer (\S+)$/.exec(authHeader);
+  if (!token) {
+    return res.status(401).send({ message: 'invalid header' });
   }
+  // const headerParts = authHeader.split(' ');
 
-  const [scheme, token] = headerParts;
-
-  if (!/^Bearer$/i.test(scheme)) {
-    return res.status(401).send({ message: 'badly formatted token' });
-  }
+  //   if (headerParts.length !== 2) {
+  //     return res.status(401).send({ message: 'invalid token' });
+  //   }
+  //
+  //   const [scheme, token] = headerParts;
+  //
+  //   if (scheme !== 'Bearer') {
+  //     return res.status(401).send({ message: 'badly formatted token' });
+  //   }
 
   jwt.verify(token, process.env.SECRET, async (err, decoded) => {
     if (err) {

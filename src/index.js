@@ -8,9 +8,9 @@ import 'dotenv/config';
 // import swaggerRoute from './swagger/swagger.route.js';
 
 import moodsRoute from './moods/moods.route.js';
-import listsRoute from './lists/lists.route.js';
-import listCategoriesRoute from './lists/listCategories/listCategories.route.js';
-import listEntriesRoute from './lists/listEntries/listEntries.route.js';
+import listsRoute from './lists/list.route.js';
+import listCategoriesRoute from './lists/listCategories/listCategory.route.js';
+import listEntriesRoute from './lists/listEntries/listEntry.route.js';
 
 const app = express();
 const port = process.env.PORT || 3001;

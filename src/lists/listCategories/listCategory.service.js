@@ -1,21 +1,21 @@
 import ListCategory from './ListCategory.js';
 
-export const createListCategoryService = (name, icon) => {
+export const create = (name, icon) => {
   return ListCategory.create({ name, icon });
 };
 
-export const getAllListCategoriesService = () => {
+export const getAll = () => {
   return ListCategory.find();
 };
 
-export const getListCategoryByIdService = (id) => {
+export const getById = (id) => {
   return ListCategory.findById(id);
 };
 
-export const updateListCategoryService = (id, body) => {
+export const update = (id, body) => {
   return ListCategory.findByIdAndUpdate(id, body).setOptions({ returnOriginal: false });
 };
 
-export const deleteListCategoryService = (id) => {
+export const remove = (id) => {
   return ListCategory.findByIdAndDelete(id);
 };

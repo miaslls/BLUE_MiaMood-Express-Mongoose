@@ -1,21 +1,21 @@
 import List from './List.js';
 
-export const createListService = (name, icon) => {
+export const create = (name, icon) => {
   return List.create({ name, icon });
 };
 
-export const getAllListsService = () => {
+export const getAll = () => {
   return List.find().populate('entries');
 };
 
-export const getListByIdService = (id) => {
+export const getById = (id) => {
   return List.findById(id);
 };
 
-export const updateListService = (id, body) => {
+export const update = (id, body) => {
   return List.findByIdAndUpdate(id, body).setOptions({ returnOriginal: false }).populate('entries');
 };
 
-export const deleteListService = (id) => {
+export const remove = (id) => {
   return List.findByIdAndDelete(id);
 };
