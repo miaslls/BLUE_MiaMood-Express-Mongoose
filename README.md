@@ -2,5 +2,6 @@
 
 📌📌🚨 ❗❗❗ DON'T FORGET!
 
-TODO: ERROR TREATMENT 📌🚨
-TODO: delete all listEntries when deleting list
+TODO: ERROR TREATMENT / VALIDATIONS 📌🚨
+
+TODO: delete all listEntries when deleting list ✔

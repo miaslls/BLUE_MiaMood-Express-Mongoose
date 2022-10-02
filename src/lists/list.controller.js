@@ -1,4 +1,5 @@
 import * as listService from './list.service.js';
+import { remove as deleteEntry } from './listEntries/listEntry.service.js';
 
 // 📌 CREATE
 
@@ -59,6 +60,10 @@ export const update = async (req, res) => {
 export const remove = async (req, res) => {
   try {
     const idParam = req.params.id;
+
+    const listToDelete = await listService.getById(idParam);
+    listToDelete.entries.forEach(async (entry) => await deleteEntry(entry));
+
     await listService.remove(idParam);
 
     res.send({ message: 'deleted' });
