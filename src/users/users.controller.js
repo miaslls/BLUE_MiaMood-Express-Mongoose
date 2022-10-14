@@ -3,7 +3,9 @@
 import {
   createUserService,
   getAllUsersService,
+  getUserByIdService,
   getUserByUsernameService,
+  deleteUserService,
 } from './users.service.js';
 
 // 📌 CREATE
@@ -41,6 +43,26 @@ export const getAllUsersController = async (req, res) => {
     }
 
     res.send(allUsers);
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
+// 📌 DELETE
+
+export const deleteUserController = async (req, res) => {
+  try {
+    const idParam = req.params.id;
+
+    const userById = await getUserByIdService(idParam);
+
+    if (!userById) {
+      return res.status(404).send({ message: 'not found' });
+    }
+
+    await deleteUserService(idParam);
+
+    res.send({ message: 'deleted' });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
