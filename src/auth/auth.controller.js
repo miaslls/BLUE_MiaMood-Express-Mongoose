@@ -21,7 +21,10 @@ const loginController = async (req, res) => {
 
     const token = generateToken(user.id);
 
-    res.send({ token });
+    res.send({
+      token: token,
+      user: { id: user.id, username: user.username },
+    });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
