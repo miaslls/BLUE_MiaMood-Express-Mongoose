@@ -15,7 +15,6 @@ import {
 } from './moods.controller.js';
 
 import { validMoodId, validMoodBody } from './moods.middleware.js';
-// import authMiddleware from '../auth/auth.middleware.js';
 
 router.post('/', validMoodBody, createMoodController);
 router.get('/', getAllMoodsController);
