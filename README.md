@@ -1,7 +1,11 @@
-# PERSONAL_MiaLogs
+# MiaMood | Express, Mongoose
 
-📌📌🚨 ❗❗❗ DON'T FORGET!
+## deploy
 
-TODO: ERROR TREATMENT / VALIDATIONS 📌🚨
+🔗 [miamood-02.onrender.com/moods](https://miamood-02.onrender.com/moods)
 
-TODO: delete all listEntries when deleting list ✔
+## frontend
+
+🔗 github: [github.com/miaslls/MiaMood-ReactJS](https://github.com/miaslls/MiaMood-ReactJS)
+
+🔗 demo: [miamood-02.vercel.app](https://miamood-02.vercel.app)
