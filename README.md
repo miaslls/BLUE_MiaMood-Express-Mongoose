@@ -6,6 +6,6 @@
 
 ## frontend
 
-🔗 github: [github.com/miaslls/MiaMood-ReactJS](https://github.com/miaslls/MiaMood-ReactJS)
+🔗 github: [github.com/miaslls/BLUE_MiaMood-ReactJS](https://github.com/miaslls/BLUE_MiaMood-ReactJS)
 
 🔗 demo: [miamood-02.vercel.app](https://miamood-02.vercel.app)
