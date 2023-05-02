@@ -14,11 +14,8 @@ import {
 
 export const createMoodController = async (req, res) => {
   try {
-    // const userId = req.userId;
-    // const { type, icon, text, dateTime } = req.body;
     const { type, text, date, time } = req.body;
 
-    // const mood = await createMoodService(userId, Number(type), icon, text, dateTime);
     const mood = await createMoodService(Number(type), text, date, time);
 
     res.status(201).send({ message: 'created', mood: mood });
@@ -31,9 +28,6 @@ export const createMoodController = async (req, res) => {
 
 export const getAllMoodsController = async (req, res) => {
   try {
-    // const userId = req.userId;
-
-    // const moods = await getAllMoodsService(userId);
     const moods = await getAllMoodsService();
 
     res.send({ moods: moods });
@@ -46,7 +40,6 @@ export const getAllMoodsController = async (req, res) => {
 
 export const getMoodsByDateController = async (req, res) => {
   try {
-    // const userId = req.userId;
     const { year, month, day } = req.query;
 
     if (!year || !month || !day || year.length !== 4 || month.length !== 2 || day.length !== 2) {
@@ -54,8 +47,6 @@ export const getMoodsByDateController = async (req, res) => {
     }
 
     const date = `${year}-${month}-${day}`;
-
-    // const moods = await getMoodsbyDateService(userId, date);
     const moods = await getMoodsbyDateService(date);
 
     res.send({ moods: moods });
@@ -68,15 +59,12 @@ export const getMoodsByDateController = async (req, res) => {
 
 export const getTodayMoodsController = async (req, res) => {
   try {
-    // const userId = req.userId;
-
     const today = new Date();
 
     const year = today.getFullYear().toString().padStart(4, '0');
     const month = (today.getMonth() + 1).toString().padStart(2, '0');
     const day = today.getDate().toString().padStart(2, '0');
 
-    // const moods = await getMoodsbyDateService(userId, `${year}-${month}-${day}`);
     const moods = await getMoodsbyDateService(`${year}-${month}-${day}`);
 
     res.send({ moods: moods });
@@ -89,10 +77,7 @@ export const getTodayMoodsController = async (req, res) => {
 
 export const searchMoodsController = async (req, res) => {
   try {
-    // const userId = req.userId;
     const query = req.query.text;
-
-    // const moods = await searchMoodsService(userId, query);
     const moods = await searchMoodsService(query);
 
     res.send({ moods: moods });
@@ -105,7 +90,6 @@ export const searchMoodsController = async (req, res) => {
 
 export const getMoodByIdController = async (req, res) => {
   try {
-    // const userId = req.userId;
     const idParam = req.params.id;
 
     const mood = await getMoodByIdService(idParam);
@@ -113,10 +97,6 @@ export const getMoodByIdController = async (req, res) => {
     if (!mood) {
       return res.status(404).send({ message: 'not found' });
     }
-
-    // if (mood.user.id !== userId) {
-    //   return res.status(401).send({ message: 'unauthorized' });
-    // }
 
     res.send({ mood: mood });
   } catch (err) {
@@ -128,7 +108,6 @@ export const getMoodByIdController = async (req, res) => {
 
 export const updateMoodController = async (req, res) => {
   try {
-    // const userId = req.userId;
     const idParam = req.params.id;
     const body = req.body;
 
@@ -137,10 +116,6 @@ export const updateMoodController = async (req, res) => {
     if (!moodById) {
       return res.status(404).send({ message: 'not found' });
     }
-
-    // if (moodById.user.id !== userId) {
-    //   return res.status(401).send({ message: 'unauthorized' });
-    // }
 
     const mood = await updateMoodService(idParam, body);
 
@@ -154,7 +129,6 @@ export const updateMoodController = async (req, res) => {
 
 export const deleteMoodController = async (req, res) => {
   try {
-    // const userId = req.userId;
     const idParam = req.params.id;
 
     const moodById = await getMoodByIdService(idParam);
@@ -162,10 +136,6 @@ export const deleteMoodController = async (req, res) => {
     if (!moodById) {
       return res.status(404).send({ message: 'not found' });
     }
-
-    // if (moodById.user.id !== userId) {
-    //   return res.status(401).send({ message: 'unauthorized' });
-    // }
 
     await deleteMoodService(idParam);
 

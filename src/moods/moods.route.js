@@ -21,9 +21,9 @@ router.post('/', validMoodBody, createMoodController);
 router.get('/', getAllMoodsController);
 router.put('/update/:id', validMoodId, validMoodBody, updateMoodController);
 router.delete('/delete/:id', validMoodId, deleteMoodController);
-// router.get('/date', getMoodsByDateController);
-// router.get('/date/today', getTodayMoodsController);
-// router.get('/search', searchMoodsController);
-// router.get('/id/:id', validMoodId, getMoodByIdController);
+router.get('/date', getMoodsByDateController);
+router.get('/date/today', getTodayMoodsController);
+router.get('/search', searchMoodsController);
+router.get('/id/:id', validMoodId, getMoodByIdController);
 
 export default router;

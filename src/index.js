@@ -20,14 +20,7 @@ databaseConnection();
 app.use(cors());
 app.use(express.json());
 
-app.use('/auth', authRoute);
-app.use('/users', usersRoute);
-// app.use('/api-docs', swaggerRoute);
-
 app.use('/moods', moodsRoute);
-app.use('/lists', listsRoute);
-app.use('/list-categories', listCategoriesRoute);
-app.use('/list-entries', listEntriesRoute);
 
 app.listen(port, () => {
   console.log(`server running @ port ${port}`);
