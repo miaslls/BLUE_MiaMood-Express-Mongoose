@@ -2,7 +2,7 @@
 
 ## deploy
 
-🔗 [miamood-02.onrender.com/moods](https://miamood-02.onrender.com/moods)
+🔗 [miamood-02.fly.dev/moods](https://miamood-02.fly.dev/moods)
 
 ## frontend
 
