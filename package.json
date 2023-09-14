@@ -1,5 +1,5 @@
 {
-  "name": "miamood-api",
+  "name": "miamood-server",
   "version": "2.0.0",
   "description": "",
   "main": "index.js",
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/miaslls/BLUE_MiaMood-Express-Mongoose.git"
+    "url": "git+https://github.com/miaslls/MiaMood-server.git"
   },
   "author": "miaslls",
-  "homepage": "https://github.com/miaslls/BLUE_MiaMood-Express-Mongooses#readme",
+  "homepage": "https://github.com/miaslls/MiaMood-server#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",

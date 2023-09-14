@@ -18,11 +18,11 @@ import { validMoodId, validMoodBody } from './moods.middleware.js';
 
 router.post('/', validMoodBody, createMoodController);
 router.get('/', getAllMoodsController);
-router.put('/update/:id', validMoodId, validMoodBody, updateMoodController);
-router.delete('/delete/:id', validMoodId, deleteMoodController);
-router.get('/date', getMoodsByDateController);
 router.get('/date/today', getTodayMoodsController);
+router.get('/date', getMoodsByDateController);
 router.get('/search', searchMoodsController);
 router.get('/id/:id', validMoodId, getMoodByIdController);
+router.put('/update/:id', validMoodId, validMoodBody, updateMoodController);
+router.delete('/delete/:id', validMoodId, deleteMoodController);
 
 export default router;
