@@ -1,5 +1,5 @@
-This page is in <img src="assets/img/flag-en.png" width="14" alt="English"> English.
-Para visualizar essa página em <img src="assets/img/flag-pt-br.png" width="14" alt="Português"> Português, [clique aqui](./README-ptbr.md).
+Essa página está em <img src="assets/img/flag-pt-br.png" width="14" alt="Português"> Português.
+To view this page in <img src="assets/img/flag-en.png" width="14" alt="English"> English, [click here](./README.md).
 
 ---
 
@@ -12,7 +12,7 @@ Para visualizar essa página em <img src="assets/img/flag-pt-br.png" width="14" 
 ![Static Badge: Mongoose](https://img.shields.io/badge/Mongoose-5a5a5a?logo=mongoose)
 ![Static Badge: MongoDB](https://img.shields.io/badge/MongoDB-5a5a5a?logo=mongodb)
 
-## 🌐 API Reference
+## 🌐 Referência da API
 
 #### Create mood
 
@@ -84,7 +84,7 @@ DELETE /delete/${id}
 | :-------- | :------- | :--------------------------------- |
 | `id`      | `string` | **Required**. ID of mood to delete |
 
-## ⚙️ Install and Run
+## ⚙️ Instalação
 
 Clone the project
 
@@ -110,14 +110,14 @@ Run the project
 > npm run start
 ```
 
-## 👩‍💻 Authors
+## 👩‍💻 Autoria
 
 - [@miaslls](https://www.github.com/miaslls)
 
-## 📑 Related Projects
+## 📑 Projetos Relacionados
 
 - [MiaMood](https://www.github.com/miaslls/MiaMood#readme)
 
-## 🫶 Acknowledgements
+## 🫶 Recursos / Agradecimentos
 
 - [flaticon](https://www.flaticon.com)
