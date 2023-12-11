@@ -5,8 +5,7 @@ Para visualizar essa página em <img src="assets/img/flag-pt-br.png" width="14" 
 
 # <img src="assets/img/server.png" width="20" alt="Server icon"> MiaMood (server)
 
-![Static Badge: Study](https://img.shields.io/badge/personal-mediumpurple)
-![Static Badge: Version - 2.0.0](https://img.shields.io/badge/version-2.0.0-green)
+![Static Badge: Personal](https://img.shields.io/badge/personal-mediumpurple)
 ![Static Badge: Node.js](https://img.shields.io/badge/Node.js-5a5a5a?logo=nodedotjs)
 ![Static Badge: Express](https://img.shields.io/badge/Express-5a5a5a?logo=express)
 ![Static Badge: Mongoose](https://img.shields.io/badge/Mongoose-5a5a5a?logo=mongoose)
